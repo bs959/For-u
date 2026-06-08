@@ -1,132 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Innu 💖</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Best Friend Day 🌸</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
-<div id="stars"></div>
-<div id="trail-container"></div>
+  <div class="bg-petals" id="petalsContainer"></div>
 
-<div class="book-container">
-    <!-- SCREEN 1: Opening -->
-    <div class="page active" id="screen-1">
-        <h1 class="fade-text">For Someone<br>Very Special...</h1>
-        <div class="heart-pulse" onclick="nextScreen()">💖</div>
-        <p style="font-size: 14px; opacity: 0.7; margin-top: 20px;">Click the heart to open</p>
+  <div class="main-wrapper">
+    
+    <div class="screen active-screen" id="screen1">
+      <div class="envelope-wrapper" onclick="nextScreen(2)">
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body"></div>
+          <div class="envelope-text">Tap to Open... ✉️</div>
+        </div>
+      </div>
     </div>
 
-    <!-- PHOTO ALBUM FRAME (FIXED DIRECT LINKS) -->
-    <div class="page" id="screen-photos">
-        <div class="album-frame">
-            <div class="frame-inner">
-                <div class="album-page active-photo">
-                    <img src="https://i.ibb.co/N6fND6h/1.jpg" alt="Innu 1" class="album-img">
-                    <p class="photo-caption">✨ Some people become special without even trying...</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/Rm2Zbbf/2.jpg" alt="Innu 2" class="album-img">
-                    <p class="photo-caption">🌸 A beautiful memory worth keeping forever.</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/Xxv9n7bj/3.jpg" alt="Innu 3" class="album-img">
-                    <p class="photo-caption">💖 Every smile tells a story.</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/gbcYbLKx/4.jpg" alt="Innu 4" class="album-img">
-                    <p class="photo-caption">🦋 Some moments deserve their own page.</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/7JTWHg8/5.jpg" alt="Innu 5" class="album-img">
-                    <p class="photo-caption">✨ A collection of beautiful memories.</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/nNRcjS0/6.jpg" alt="Innu 6" class="album-img">
-                    <p class="photo-caption">💫 Always stay the way you are...</p>
-                </div>
-                <div class="album-page">
-                    <img src="https://i.ibb.co/9m1jz54K/7.jpg" alt="Innu 7" class="album-img">
-                    <p class="photo-caption">🌹 You are precious.</p>
-                </div>
+    <div class="screen" id="screen2">
+      <div class="polaroid-pair">
+        <div class="polaroid animation-fade-left">
+          <img src="1.jpg" alt="Memory 1">
+        </div>
+        <div class="polaroid animation-fade-right">
+          <img src="2.jpg" alt="Memory 2">
+        </div>
+      </div>
+      <button class="nav-btn next-pos" onclick="nextScreen(3)">Aage Badho ➔</button>
+    </div>
+
+    <div class="screen" id="screen3">
+      <div class="typing-container">
+        <h2 class="main-heading">Happy Best Friend Day 💖🌸</h2>
+        <p id="typewriterText"></p>
+        <div class="side-photos">
+          <img src="3.jpg" class="side-img float-1" alt="Memory 3">
+          <img src="4.jpg" class="side-img float-2" alt="Memory 4">
+        </div>
+      </div>
+      <button class="nav-btn next-pos" id="typingNextBtn" style="display:none;" onclick="nextScreen(4)">Open Book ➔</button>
+    </div>
+
+    <div class="screen" id="screen4">
+      <div class="book-shell">
+        <div class="book-view active-view" id="view1">
+          <div class="book-left">
+            <p>Sach kahu to meri life me bahut log aaye aur gaye, lekin tumhari jagah koi nahi le sakta 😊✨. Tum sirf meri best friend nahi ho, balki meri har smile, har achhe moment aur har yaad ka ek bahut khaas hissa ho 💕🌷.</p>
+            <p>Tumse baat karke din accha lagta hai 😊💫, aur jab baat nahi hoti to kuch na kuch missing sa feel hota hai 🥺🌙. Tumhari care, tumhari baatein aur tumhara saath mere liye bahut precious hai ❤️🤗.</p>
+          </div>
+          <div class="book-right">
+            <p>Main hamesha ye nahi bata pata ki tum mere liye kitni important ho 😌💖, lekin itna zaroor jaanta hu ki tumhari khushi dekh kar mujhe bhi khushi milti hai 🌹😊. Tumhari respect aur value meri life me bahut zyada hai 💕✨.</p>
+            <div class="book-img-box">
+              <img src="5.jpg" alt="Memory 5">
             </div>
-            <div class="album-controls">
-                <button onclick="changePhoto(-1)">⬅ Back</button>
-                <button onclick="changePhoto(1)" id="next-photo-btn">Next Photo ➡</button>
+            <button class="book-btn" onclick="toggleBookView(2)">Next Page ➔</button>
+          </div>
+        </div>
+
+        <div class="book-view" id="view2">
+          <div class="book-left">
+            <p>Chahe kitni bhi dooriyan ho ya kitna bhi time beet jaye ⏳💫, main hamesha tumhare liye dua karunga ki tum hamesha khush raho 🌸🤍.</p>
+            <p>Thank you meri life ka itna beautiful part banne ke liye 🌹🥰. Tumhari dosti mere liye ek gift jaisi hai 🎁❤️, aur main isse hamesha sambhal kar rakhna chahta hu 🤗✨.</p>
+          </div>
+          <div class="book-right">
+            <p>Happy Best Friend Day, meri sabse special dost 💖🌷. Bas itna yaad rakhna ki tum mere liye bahut zyada important ho 🥺❤️✨. 💕🌸🫶🏻💫🌹</p>
+            <div class="book-img-box">
+              <img src="6.jpg" alt="Memory 6">
             </div>
+            <button class="book-btn back-btn" onclick="toggleBookView(1)">⬅ Back</button>
+            <button class="book-btn" onclick="nextScreen(5)">Next Screen ➔</button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- SCREEN 2 & 3: Envelope Screen -->
-    <div class="page" id="screen-2">
-        <div class="envelope-wrapper" onclick="openEnvelope()">
-            <div class="envelope">
-                <div class="flap"></div>
-                <div class="pocket"></div>
-                <div class="letter">
-                    <p>A Special<br>Message For You<br>💖</p>
-                </div>
-            </div>
+    <div class="screen" id="screen5">
+      <div class="grid-layout">
+        <div class="grid-card tilt-left">
+          <img src="7.jpg" alt="Memory 7">
         </div>
-        <p class="hint-text">Click the envelope 💌</p>
-    </div>
-
-    <!-- SCREEN 4: Typing Message -->
-    <div class="page" id="screen-4">
-        <div class="message-box">
-            <div id="typing-container"></div>
+        <div class="grid-text-center">
+          <h3>Hameesha Saath 💫</h3>
+          <p>Har ek photo me ek alag kahani hai, ek alag yaad hai jo hamesha dil ke paas rahegi.</p>
         </div>
-        <button class="next-btn" onclick="nextScreen()">Read More ➡</button>
-    </div>
-
-    <!-- SCREEN 5: Page Turn Effect Book -->
-    <div class="page" id="screen-5">
-        <div class="real-book">
-            <div class="book-page left-page">
-                <p>Main hamesha ye nahi bata pata ki tum mere liye kitni important ho 🥺, lekin itna zaroor jaanta hu ki tumhari khushi dekh kar mujhe bhi khushi milti hai 🌸.<br><br>Tumhari respect aur value meri life me bahut zyada hai 💞.</p>
-            </div>
-            <div class="book-page right-page">
-                <p>Chahe kitni bhi dooriyan ho ya kitna bhi time beet jaye ⏱️, main hamesha tumhare liye dua karunga ki tum hamesha khush raho 💮.<br><br>Thank you meri life ka itna beautiful part banne ke liye 🥰.</p>
-            </div>
+        <div class="grid-card tilt-right">
+          <img src="8.jpg" alt="Memory 8">
         </div>
-        <button class="next-btn" onclick="nextScreen()">Next Magic ✨</button>
+      </div>
+      <button class="nav-btn next-pos" onclick="nextScreen(6)">Next ➔</button>
     </div>
 
-    <!-- SCREEN 6: Heart Trail Visualizer -->
-    <div class="page" id="screen-6">
-        <h2 class="glow-text">Move your mouse<br>and see the magic ✨</h2>
-        <button class="next-btn" onclick="nextScreen()" style="margin-top: 40px;">Continue ➡</button>
+    <div class="screen" id="screen6">
+      <div class="take-care-box">
+        <h1 class="giant-text">Take care 🙂?</h1>
+      </div>
+      <button class="nav-btn next-pos" onclick="nextScreen(7)">Final Surprise 🎀</button>
     </div>
 
-    <!-- SCREEN 7: Butterflies Animation -->
-    <div class="page" id="screen-7">
-        <div class="butterfly-container"></div>
-        <div class="poetic-box">
-            <p>Kuch log zindagi me itne special ban jaate hain ki unke bina sab kuch adhura sa lagta hai 😟.<br><br>Tum unhi logon me se ek ho 💖.</p>
+    <div class="screen" id="screen7">
+      <div class="ribbon-card-container">
+        <div class="ribbon-overlay-top">🎀 BEST FRIEND FOREVER 🎀</div>
+        <div class="ribbon-content-box">
+          <div class="final-photo-wrapper">
+            <img src="9.jpg" alt="Most Special Memory" class="final-photo">
+          </div>
+          <p class="special-quote">"Kuch log zindagi me itne special ban jaate hain ki unke bina sab kuch adhura sa lagta hai 🥺💖. Tum unhi logon me se ek ho ✨❤️."</p>
+          <div class="ornament-divider">♥ ♥ ♥</div>
+          <p class="special-quote">💖 "Pata nahi future me hamari story kis direction me jayegi, lekin itna zaroor hai ki tum meri life ke un logon me se ho jinko main kabhi khona nahi chahta 🥺🌸. Tumhari jagah mere dil me hamesha bahut khaas rahegi ❤️✨."</p>
         </div>
-        <button class="next-btn" onclick="nextScreen()">Next 🦋</button>
+        <div class="ribbon-overlay-bottom"></div>
+      </div>
     </div>
 
-    <!-- SCREEN 8: More Message Last Part -->
-    <div class="page" id="screen-8">
-        <div class="vintage-card">
-            <p>Pata nahi future me hamari story kis direction me jayegi, lekin itna zaroor hai ki tum meri life ke un logon me se ho jinko main kabhi khona nahi chahta 🤗.<br><br>Tumhari jagah mere dil me hamesha bahut khaas rahegi 💖.<br>~ <sub>🖤</sub></p>
-        </div>
-        <button class="next-btn" onclick="nextScreen()">Open Final Surprise 🎁</button>
-    </div>
+  </div>
 
-    <!-- SCREEN 9 & 10: Final Neon Screen -->
-    <div class="page" id="screen-9">
-        <div class="neon-heart-build">
-            <h1 class="neon-text">Happy<br>Best Friend<br>Day</h1>
-            <p class="sub-neon">Stay Happy, Always 🌸</p>
-        </div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
