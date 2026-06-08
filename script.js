@@ -1,11 +1,10 @@
 let currentIdx = 0;
-// Ekdam smooth array flow system
 const screenSequence = [
     'screen-1',
     'screen-photos',
     'screen-2',
     'screen-4',
-    'screen-5',
+    'screen-5', // Yeh aapki 3D Book screen hai
     'screen-6',
     'screen-7',
     'screen-8',
@@ -16,12 +15,10 @@ const photoPages = document.querySelectorAll('.album-page');
 let currentPhotoIdx = 0;
 
 function nextScreen() {
-    // Purani screen ko hide karo
     const currentId = screenSequence[currentIdx];
     const currentEl = document.getElementById(currentId);
     if (currentEl) currentEl.classList.remove('active');
 
-    // Agli screen par jao
     currentIdx++;
     
     if (currentIdx < screenSequence.length) {
@@ -29,8 +26,8 @@ function nextScreen() {
         const nextEl = document.getElementById(nextId);
         if (nextEl) nextEl.classList.add('active');
 
-        // Spawners trigger karein
         if (nextId === 'screen-4') startTypingMessage();
+        if (nextId === 'screen-5') startBookTypewriter(); // Book khulne par typing shuru
         if (nextId === 'screen-7') generateButterflies();
     }
 }
@@ -69,24 +66,20 @@ function openEnvelope() {
     }
 }
 
+// Screen 4 Text
 const secretText = `Happy Best Friend Day 💖
 
 Sach kahu to meri life me bahut log aaye aur gaye, lekin tumhari jagah koi nahi le sakta 🥺.
 
-Tum sirf meri best friend nahi ho, balki meri har smile, har ache moment aur har yaad ka ek bahut khaas hissa ho 💞.
-
-Tumse baat karke din accha lagta hai 😊, aur jab baat nahi hoti to kuch na kuch missing sa feel hota hai 🥺.
-
-Tumhari care, tumhari baatein aur tumhara saath mere liye bahut precious hai ❤️.`;
+Tum sirf meri best friend nahi ho, balki meri har smile, har ache moment aur har yaad ka ek bahut khaas hissa ho 💞.`;
 
 let isTypingStarted = false;
 function startTypingMessage() {
     if (isTypingStarted) return;
     isTypingStarted = true;
-    
     let i = 0;
     const box = document.getElementById('typing-container');
-    box.innerHTML = ""; // Clear content before typing
+    box.innerHTML = "";
     
     function type() {
         if (i < secretText.length) {
@@ -98,7 +91,53 @@ function startTypingMessage() {
     type();
 }
 
-// Mouse Trail Logic
+// ==========================================
+// NEW: 3D BOOK TYPEWRITER LOGIC (Screen 5)
+// ==========================================
+const leftPageText = `Main hamesha ye nahi bata pata ki tum mere liye kitni important ho 🥺, lekin itna zaroor jaanta hu ki tumhari khushi dekh kar mujhe bhi khushi milti hai 🌸.\n\nTumhari respect aur value meri life me bahut zyada hai 💞.`;
+const rightPageText = `Chahe kitni bhi dooriyan ho ya kitna bhi time beet jaye ⏱️, main hamesha tumhare liye dua karunga ki tum hamesha khush raho 💮.\n\nThank you meri life ka itna beautiful part banne ke liye 🥰.`;
+
+let isBookTypingStarted = false;
+function startBookTypewriter() {
+    if (isBookTypingStarted) return;
+    isBookTypingStarted = true;
+
+    // HTML ke purane static text ko clear kar rahe hain
+    const leftPage = document.querySelector('.left-page p');
+    const rightPage = document.querySelector('.right-page p');
+    leftPage.innerHTML = "";
+    rightPage.innerHTML = "";
+
+    let leftTextIdx = 0;
+    let rightTextIdx = 0;
+
+    // Pehle left page par type hoga
+    function typeLeft() {
+        if (leftTextIdx < leftPageText.length) {
+            let char = leftPageText.charAt(leftTextIdx);
+            leftPage.innerHTML += char === '\n' ? '<br>' : char;
+            leftTextIdx++;
+            setTimeout(typeLeft, 30);
+        } else {
+            // Left page poora hone ke baad right page shuru hoga
+            setTimeout(typeRight, 500);
+        }
+    }
+
+    // Phir right page par type hoga
+    function typeRight() {
+        if (rightTextIdx < rightPageText.length) {
+            let char = rightPageText.charAt(rightTextIdx);
+            rightPage.innerHTML += char === '\n' ? '<br>' : char;
+            rightTextIdx++;
+            setTimeout(typeRight, 30);
+        }
+    }
+
+    typeLeft();
+}
+
+// Mouse Trail
 document.addEventListener('mousemove', (e) => {
     if (screenSequence[currentIdx] === 'screen-6') {
         const particle = document.createElement('div');
@@ -107,12 +146,11 @@ document.addEventListener('mousemove', (e) => {
         particle.style.left = e.clientX + 'px';
         particle.style.top = e.clientY + 'px';
         document.body.appendChild(particle);
-        
         setTimeout(() => particle.remove(), 1000);
     }
 });
 
-// Mobile Touch Trail Support
+// Touch Trail
 document.addEventListener('touchmove', (e) => {
     if (screenSequence[currentIdx] === 'screen-6') {
         const particle = document.createElement('div');
@@ -121,12 +159,11 @@ document.addEventListener('touchmove', (e) => {
         particle.style.left = e.touches[0].clientX + 'px';
         particle.style.top = e.touches[0].clientY + 'px';
         document.body.appendChild(particle);
-        
         setTimeout(() => particle.remove(), 1000);
     }
 });
 
-// Stars Builder
+// Stars
 const starsBox = document.getElementById('stars');
 for(let s=0; s<80; s++) {
     const star = document.createElement('div');
@@ -138,7 +175,7 @@ for(let s=0; s<80; s++) {
     starsBox.appendChild(star);
 }
 
-// Petals Loop
+// Falling Petals
 setInterval(() => {
     const petal = document.createElement('div');
     petal.className = 'petal';
@@ -147,7 +184,6 @@ setInterval(() => {
     petal.style.fontSize = (12 + Math.random() * 12) + 'px';
     petal.style.animationDuration = (5 + Math.random() * 5) + 's';
     document.body.appendChild(petal);
-    
     setTimeout(() => petal.remove(), 10000);
 }, 600);
 
@@ -169,28 +205,15 @@ function generateButterflies() {
 
 // SECURITY FEATURES
 document.addEventListener('contextmenu', (e) => e.preventDefault());
-
 document.addEventListener('keydown', (e) => {
-    if (
-        e.key === 'F12' || 
-        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-        (e.ctrlKey && e.shiftKey && e.key === 'C') || 
-        (e.ctrlKey && e.shiftKey && e.key === 'J') || 
-        (e.ctrlKey && e.key === 'U') ||
-        e.key === 'PrintScreen'
-    ) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'C') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U') || e.key === 'PrintScreen') {
         e.preventDefault();
         return false;
     }
 });
-
 document.addEventListener('visibilitychange', () => {
     const container = document.querySelector('.book-container');
-    if (document.hidden) {
-        container.style.filter = 'blur(60px)';
-    } else {
-        container.style.filter = 'none';
-    }
+    if (document.hidden) container.style.filter = 'blur(60px)';
+    else container.style.filter = 'none';
 });
-
 document.addEventListener('copy', (e) => e.preventDefault());
